@@ -17,6 +17,6 @@
     },
 
     "require-dev": {
-        "leafo/scssphp": "^1.11"
+        "scssphp/scssphp": "v1.12.1"
     }
 }

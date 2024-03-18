@@ -3,13 +3,16 @@
 require '../vendor/autoload.php';
 
 use MVC\Router;
-use Leafo\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Compiler;
 
 $scss = new Compiler();
 $scss->setImportPaths('./style/scss');
 
-$scssInput = file_get_contents('./style/scss/main.scss');
-$cssOutput = $scss->compile($scssInput);
+try {
+    $cssOutput = $scss->compileFile('./style/scss/main.scss');
+} catch (\ScssPhp\ScssPhp\Exception\SassException $e) {
+    throw new Error($e);
+}
 
 file_put_contents('./style/main.css', $cssOutput);
 
